@@ -15,6 +15,12 @@ import javax.swing.*;
 import javax.swing.text.*;
 
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Random;
 import java.util.regex.Pattern;
 
@@ -28,9 +34,10 @@ public class SudokuSolverUI extends JPanel
     public String str;
     private JLabel left;
     public JTextField[][] field = new JTextField[16][16];
-    public SudokuSolverUI()
+    public SudokuSolverUI() throws IOException
     {
-        superPanel=new JPanel(new FlowLayout());
+    	final BufferedWriter tulis = new BufferedWriter (new FileWriter("D:/input.in"));
+    	superPanel=new JPanel(new FlowLayout());
         gridPanel=new JPanel(new GridLayout(16,16));
         gridPanel.setSize(400,400);
         upView=new JPanel(new GridLayout(16,16));
@@ -90,11 +97,24 @@ public class SudokuSolverUI extends JPanel
             	int j=random.nextInt(16)+1;
             	int k =random.nextInt(16)+1;
             	field[i][j].setText(""+k);
-            	System.out.println(i);
-            	System.out.println(j);
-            	System.out.println(k);
-            	System.out.println(field[i][j]);
+            	try {
+					tulis.write("lala");
+				} catch (IOException e) {
+					
+				}
+            	
+            	/*for (int b=0; b<16; b++){
+            		for (int c=0; c<16; c++){
+            			if (field[b][c].getText()!=null){
+            				try {
+                				tulis.write("lala" + field[b][c].getText());
+                			}catch (IOException e) {
+                			}
+            			}
+        			}
+            	}*/
             }
+           
         });
     }
 
